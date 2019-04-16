@@ -35,19 +35,37 @@
 <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js'></script>
 <script type='text/javascript' src='https://uicdn.toast.com/tui.code-snippet/v1.5.0/tui-code-snippet.min.js'></script>
 <script type='text/javascript' src='https://uicdn.toast.com/tui.chart/latest/raphael.js'></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src='../dist/tui-chart.js'></script>
 <script class='code-js' id='code-js'>
+console.log("javascript 1");
 var container = document.getElementById('chart-area');
 var dat1 = [];
 var dat2 = [];
-dat1.push(1)
 $.ajax({
-    url: "chartData.json"
+    url: "chartData.json",
     success: function(result){
-        dat1 = [5000,3000,5000,7000,6000,4000];
-        dat2 = [8000,1000,7000,2000,5000,3000];
-    }
-});
+        // dat1 = [5000,3000,5000,7000,6000,4000];
+        // dat2 = [8000,1000,7000,2000,5000,3000];
+        for(i in result.data){
+            dat1.push(result.data[i].debit);
+            dat2.push(result.data[i].budget);
+        }
+        console.log("ajax....2")
+console.log("javascript 3");
+var data = {
+    categories: ['June','July','Aug','Sep','Oct','Nov'],
+    series: [
+        {
+            name:'Budget',
+            data:dat1
+        },
+        {
+            name: 'Income',
+            data:dat2
+        }
+    ]
+};
 var options = {
     chart: {
         width: 1160,
@@ -76,13 +94,15 @@ var theme = {
         ]
     }
 };
-
+  
 // For apply theme
 
 // tui.chart.registerTheme('myTheme', theme);
 // options.theme = 'myTheme';
 
 tui.chart.barChart(container, data, options);
+    }
+}); 
 </script>
 
 <!--For tutorial page-->
