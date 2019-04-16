@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Event Sample 3</title>
+	<script src="js/jquery.js"></script>
+	<script>
+		$(document).ready(function () {
+			var $tableTag = "<table border='1'>";
+			$("#list1").click(function () {
+				for (var i = 0; i < 20; i++) {
+					$tableTag += "<tr><td>" + i + "</td><td>content" + i + "</td><tr>";
+				}
+				$("#tab1").append($tableTag);
+			});
+			$("body").on("click", "tr", function (event) {
+				console.log($(this))
+				var $html = $(this).html();
+				//console.log($($html).last().text());
+				var $first = $($(this).html()).first().text();
+				var $last = $($(this).html()).last().text();
+				
+				$("table").find("tr").css("color","black");
+				$(this).css("color","red");
+
+				$("#show1").text($first + ", " + $last);
+			})
+		});
+	</script>
+</head>
+
+<body>
+	<button id="list1">Create Table List</button>
+	<div id="tab1"></div>
+	<div id="show1"></div>
+</body>
+
+</html>

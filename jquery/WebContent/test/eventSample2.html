@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Event Sample 2</title>
+	<script src="js/jquery.js"></script>
+	<script>
+		$(document).ready(function () {
+			var i = 1;
+			$("#list1").click(function () {
+				$input = $("#input1").val();
+				if ($input) {
+					$("<tr id=" + i + " />").html("<td>" + i + "</td><td>" + $input + "</td><td><button onclick='del(" + i + ")'>Click</button>").appendTo("#tab");
+					i++;
+				}
+				if ($input) $("#input1").val("").focus();
+			});
+		});
+		function del(id) {
+			console.log($("#" + id).html());
+			$("#" + id).remove();
+		}
+	</script>
+</head>
+<body>
+	<input type="text" id="input1"><button id="list1">Click to Add</button>
+	<table border="1" id="tab">
+		<tr>
+			<th>Seq</th>
+			<th>Input</th>
+			<th>Button</th>
+	</table>
+</body>
+
+</html>

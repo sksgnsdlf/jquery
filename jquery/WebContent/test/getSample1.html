@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head> <!-- jsp로  바꿔서 출력되도록하게 해야함-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      $("button").click(function () {
+        $.get("demo_test1.jsp", function (data, status) {
+          console.log(data);
+          //alert("Data: " + data + "\nStatus: " + status);
+          var result = JSON.parse(data);// 자바란 객체를 JSON타입으로  바꾼후 result에 넣어줌
+          //var result = data;
+          console.log(result);
+          var $tag = "<ul>";
+          for (var i = 0; i < result.datas.length; i++) {
+            console.log(result.datas[i].firstName);
+            $tag += "<li>" + result.datas[i].firstName + "-" + result.datas[i].lastName + "</li>";
+          }
+          $tag += "</ul>";
+          $("#result").append($tag);
+        });
+      });
+    });
+  </script>
+</head>
+
+<body>
+
+  <button>Send an HTTP GET request to a page and get the result back</button>
+  <div id="result"></div>
+</body>
+
+</html>

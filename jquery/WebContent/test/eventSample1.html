@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Event Sample 1</title>
+	<script src="js/jquery.js"></script>
+	<script>
+		$(document).ready(function () {
+			$("#list1").click(function () {
+				$input = $("#input1").val();
+				$("#result").append("<li>" + $input + "</li>");
+				if ($input) $("#input1").val("").focus();
+			});
+		});
+	</script>
+</head>
+
+<body>
+	<input type="text" id="input1"><button id="list1">Click to Add</button>
+	<div id="result"></div>
+	<div id="tab"></div>
+</body>
+
+</html>

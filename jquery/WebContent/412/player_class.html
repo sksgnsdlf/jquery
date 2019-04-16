@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <script src="jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $.ajax(
+                {
+                    url: "player_class.jsp",
+                    type: "post",
+                    success: function (result) {
+                        console.log(result);
+                        var datas = JSON.parse(result);
+                        $.each(datas, function (i) {
+                            $("#show").append($("<li />").text(datas[i]));
+                        })
+                    }
+                }
+            );
+            $("#btn1").on("click", function () {
+                $("li").each(function (i, o) {
+                    console.log(i,o);
+                });
+            });
+        });
+
+        $("#myInput").on("keyup",function(){
+            var value = $(this).val().toLowerCase();
+            $("table tr").filter(function(){
+                $(this).toggle($(this).text().toLowerCase().indexOf(value)>-1);
+            }).css("display","none")
+        })
+    </script>
+</head>
+
+<body>
+    <input id="myInput" />
+    <h1>Email List</h1>
+    <div id="show"></div>
+    <button id="btn1">show List</button>
+</body>
+
+</html>
